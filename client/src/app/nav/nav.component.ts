@@ -10,11 +10,12 @@ import { Observable, of } from 'rxjs';
 })
 export class NavComponent implements OnInit{
   model:any ={};
-  currentUser$ : Observable<User> = of(null);
+  
   title ="Dating App";
   
-  constructor(private accountService:AccountService){ }
+  constructor(public accountService:AccountService){ }
   ngOnInit(): void {
+    
   }
   
   login(){
