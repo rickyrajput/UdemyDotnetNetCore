@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,7 @@ export class NavComponent implements OnInit{
   
   title ="Dating App";
   
-  constructor(public accountService:AccountService){ }
+  constructor(public accountService:AccountService,private router:Router){ }
   ngOnInit(): void {
     
   }
@@ -22,6 +23,7 @@ export class NavComponent implements OnInit{
     this.accountService.login(this.model).subscribe({
       next: (response:User) => {
         console.log(response);
+        this.router.navigateByUrl('/members');
        
       },
       error: error=>{ console.log(error);},
@@ -29,6 +31,7 @@ export class NavComponent implements OnInit{
     })
   }
   logout(){
+    this.router.navigateByUrl('/');
     this.accountService.logout();
   }
 }
